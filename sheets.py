@@ -52,5 +52,12 @@ def get_properties(sheet_id: str, query: str = "") -> str:
 
     result = []
     for r in available:
-        result.append(
+        line = (
             f"ID:{r['ID']} | {r['სახელი']} | {r['ტიპი']} | "
+            f"{r['ოთახები']} ოთახი | {r['ფასი']} | "
+            f"{r['ადგილმდებარეობა']} | {r['ფართი_მ2']}მ2 | "
+            f"სართული: {r['სართული']} | {r['აღწერა']} | "
+            f"ფოტო: {r.get('ფოტო_ლინკი', 'არ არის')}"
+        )
+        result.append(line)
+    return "\n".join(result)
