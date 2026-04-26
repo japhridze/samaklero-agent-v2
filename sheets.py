@@ -61,3 +61,14 @@ def get_properties(sheet_id: str, query: str = "") -> str:
         )
         result.append(line)
     return "\n".join(result)
+def get_faq(sheet_id: str) -> str:
+    try:
+        client = get_sheet_client()
+        sh = client.open_by_key(sheet_id)
+        worksheet = sh.worksheet("FAQ")
+        records = worksheet.get_all_records()
+        return "\n".join([
+            f"კ: {r['კითხვა']}\nპ: {r['პასუხი']}" for r in records
+        ])
+    except:
+        return ""
